@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Informatique - Documents</title>
+    <meta name="description" content="Documents pour l'atelier de découverte de l'informatique pour collégiens.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #ec4899;
+            --bg-color: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background Shapes for modern aesthetic */
+        .background-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+        }
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            bottom: -150px;
+            right: -100px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #fbcfe8 0%, #e0e7ff 100%);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Tabs UI */
+        .tabs-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: 2rem;
+        }
+
+        .tabs-header {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+            overflow-x: auto;
+            /* hide scrollbar */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+
+        .tabs-header::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        /* Tab Content */
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pane-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pane-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text-main);
+        }
+
+        /* Buttons */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        /* PDF Viewer */
+        .pdf-container {
+            width: 100%;
+            height: 600px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+            background: #f1f5f9;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .header-badge {
+                font-size: 0.8rem;
+            }
+            body {
+                padding: 1rem 0.5rem;
+            }
+            .tabs-container {
+                padding: 1rem;
+                border-radius: var(--radius-md);
+            }
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+            .pane-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .pane-header h2 {
+                font-size: 1.5rem;
+            }
+            .pdf-container {
+                height: 450px;
+                border-radius: 8px;
+            }
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shape shape-1"></div>
+    <div class="background-shape shape-2"></div>
+    
+    <main class="container">
+        <header>
+            <div class="header-badge">🌟 Pour les collégiens 🌟</div>
+            <h1>Découverte de l'Informatique</h1>
+            <p>Retrouvez ici tous les supports nécessaires pour animer ou participer à notre atelier !</p>
+        </header>
+
+        <section class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="tab-participant">
+                    <span class="emoji"></span> Pas à Pas Participant
+                </button>
+                <button class="tab-btn" data-tab="tab-cartes">
+                    <span class="emoji"></span> Cartes Inspirantes
+                </button>
+                <button class="tab-btn" data-tab="tab-encadrant">
+                    <span class="emoji"></span> Guide Encadrant
+                </button>
+            </div>
+
+            <div class="tabs-content">
+                <!-- Tab 1 : Pas à Pas Participant -->
+                <div id="tab-participant" class="tab-pane active fade-in">
+                    <div class="pane-header">
+                        <h2>Fiche Pas à Pas</h2>
+                        <a href="pas_a_pas_participant.pdf" download class="download-btn">
+                            Télécharger le PDF
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                    </div>
+                    <div class="pdf-container">
+                        <iframe src="pas_a_pas_participant.pdf#toolbar=0" title="Pas à Pas Participant"></iframe>
+                    </div>
+                </div>
+
+                <!-- Tab 2 : Cartes Inspirantes -->
+                <div id="tab-cartes" class="tab-pane fade-in">
+                    <div class="pane-header">
+                        <h2>Cartes Inspirantes</h2>
+                        <a href="cartes_inspirantes.pdf" download class="download-btn">
+                            Télécharger le PDF
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                    </div>
+                    <div class="pdf-container">
+                        <iframe src="cartes_inspirantes.pdf#toolbar=0" title="Cartes Inspirantes"></iframe>
+                    </div>
+                </div>
+
+                <!-- Tab 3 : Guide Encadrant -->
+                <div id="tab-encadrant" class="tab-pane fade-in">
+                    <div class="pane-header">
+                        <h2>Guide de l'Encadrant</h2>
+                        <a href="guide_encadrant.pdf" download class="download-btn">
+                            Télécharger le PDF
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                    </div>
+                    <div class="pdf-container">
+                        <iframe src="guide_encadrant.pdf#toolbar=0" title="Guide Encadrant"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const panes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Remove active class from all panes
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Get the target pane id
+                    const targetId = tab.getAttribute('data-tab');
+                    const targetPane = document.getElementById(targetId);
+                    
+                    // Add active class to the target pane
+                    if (targetPane) {
+                        targetPane.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
